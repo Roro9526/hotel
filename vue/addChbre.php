@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 
-<body class="container">
+<body>
 
     <h2 class="text-center">Ajouter Chambres</h2>
 
