@@ -50,9 +50,9 @@ function DELETE($id) {
 
 if (isset($_GET['action']) && $_GET['action'] == 'supprimer' && isset($_GET['id'])) {
     $chambre = $_GET['id'];
-
+git 
     if (DELETE($chambre)) {
-        header('Location: http://localhost/hotel/chambre.php?action=ajouter');
+        header('Location: http://localhost/hotel');
         exit();
     } else {
         // En cas d'erreur lors de la suppression
