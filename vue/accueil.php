@@ -8,12 +8,23 @@
             <p class="card-text"><?= $chambre['nbLits'] ?> lit</p>
             <p class="card-text"><?= $chambre['nbPers'] ?> personne(s)</p>
             <a href="chambre.php?action=detail&id=<?= $chambre['numChambre'] ?>" class="btn btn-primary">Détail</a>
-            <!-- Bouton de suppression avec confirmation -->
             <a href="chambre.php?action=supprimer&id=<?= $chambre['numChambre'] ?>" 
                class="btn btn-danger" 
-               onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette chambre ?');">
+               onclick="return confirmSuppression(<?= $chambre['numChambre'] ?>);">
                Supprimer
             </a>
         </div>
     </div>
 <?php endforeach; ?>
+
+<script>
+    function confirmSuppression(id) {
+        if (confirm('Êtes-vous sûr de vouloir supprimer cette chambre ?')) {
+            window.location.href = 'chambre.php?action=supprimer&id=' + id;
+        }
+        return false; // Empêcher la redirection automatique du lien
+    }
+</script>
+
+
+

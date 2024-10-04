@@ -37,3 +37,26 @@ if(isset($_POST["login"])){
     header("location: .");
     exit;
 }
+
+
+function DELETE($id) {
+    global $pdo;
+
+    $stmt = $pdo->prepare("DELETE FROM chambre WHERE numchambre = ?");
+    return $stmt->execute([$id]); 
+}
+
+
+
+if (isset($_GET['action']) && $_GET['action'] == 'supprimer' && isset($_GET['id'])) {
+    $chambre = $_GET['id'];
+
+    if (DELETE($chambre)) {
+        header('Location: http://localhost/hotel/chambre.php?action=ajouter');
+        exit();
+    } else {
+        // En cas d'erreur lors de la suppression
+        echo "Erreur lors de la suppression de la chambre.";
+    }
+}
+

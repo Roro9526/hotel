@@ -24,10 +24,9 @@ if( isset($_GET['action']) ){
                     //On crée une liste d'extensions autorisées
                     $extensions = ["jpeg", "jpg', png"];
 
-                    //test si l'extension du fichier est autorisée
+  
                     if( in_array($infoImage['extension'], $extensions) ){
 
-                        //envoie du fichier à sa destination
                         move_uploaded_file($_FILES['image']['tmp_name'], "utils/img/". $fileName);
                     }
 
@@ -44,7 +43,7 @@ if( isset($_GET['action']) ){
                     "desc"  => $description
                 ]);
 
-             //   var_dump($pdo->lastInsertId());
+
                   header("location: .");
                 exit;
             }
@@ -60,5 +59,11 @@ if( isset($_GET['action']) ){
     
         }
 }
+
+
+
+
+
+
 
 include "vue/footer.php";
