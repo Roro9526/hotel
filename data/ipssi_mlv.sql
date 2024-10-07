@@ -12,20 +12,6 @@ START TRANSACTION;
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de données : `ipssi_mlv`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `chambre`
---
 
 DROP TABLE IF EXISTS `chambre`;
 CREATE TABLE IF NOT EXISTS `chambre` (
@@ -35,14 +21,11 @@ CREATE TABLE IF NOT EXISTS `chambre` (
   `nbPers` int NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `description` text,
+  `reserved` BOOLEAN NOT NULL DEFAULT 0,
   PRIMARY KEY (`numChambre`)
 ) ENGINE=InnoDB;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `client`
---
 
 DROP TABLE IF EXISTS `client`;
 CREATE TABLE IF NOT EXISTS `client` (
@@ -53,11 +36,7 @@ CREATE TABLE IF NOT EXISTS `client` (
   PRIMARY KEY (`numClient`)
 ) ENGINE=InnoDB;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `reservation`
---
 
 DROP TABLE IF EXISTS `reservation`;
 CREATE TABLE IF NOT EXISTS `reservation` (
@@ -71,11 +50,7 @@ CREATE TABLE IF NOT EXISTS `reservation` (
   KEY `fk_chambre` (`numChambre`)
 ) ENGINE=InnoDB;
 
--- --------------------------------------------------------
 
---
--- Structure de la table `utilisateurs`
---
 
 DROP TABLE IF EXISTS `utilisateurs`;
 CREATE TABLE IF NOT EXISTS `utilisateurs` (
@@ -87,17 +62,14 @@ CREATE TABLE IF NOT EXISTS `utilisateurs` (
   UNIQUE KEY `login` (`login`)
 ) ENGINE=InnoDB;
 
---
--- Contraintes pour les tables déchargées
---
 
---
--- Contraintes pour la table `reservation`
---
 ALTER TABLE `reservation`
   ADD CONSTRAINT `fk_chambre` FOREIGN KEY (`numChambre`) REFERENCES `chambre` (`numChambre`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_client` FOREIGN KEY (`numClient`) REFERENCES `client` (`numClient`) ON DELETE CASCADE;
 COMMIT;
+
+
+INSERT into utilisateurs values (NULL,"a@gmail.com","123","administrateur")
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
