@@ -32,7 +32,7 @@ if( isset($_GET['action']) ){
 
                 }
 
-                $query = "INSERT INTO chambre VALUES(NULL, :prix, :lit, :cap, :img, :desc)";
+                $query = "INSERT INTO chambre VALUES(NULL, :prix, :lit, :cap, :img, :desc,0)";
 
                 $stmt = $pdo->prepare($query);
                 $stmt->execute([

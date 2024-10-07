@@ -23,6 +23,8 @@ function getOne($table, $column, $id){
     return $stmt->fetch();
 }
 
+
+
 if(isset($_POST["login"])){
     $stmt = $pdo->prepare("SELECT * FROM utilisateurs WHERE login = ? AND pass = ?");
     $stmt->execute([$_POST['login'], $_POST['mdp']]);
