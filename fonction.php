@@ -14,6 +14,18 @@ function getAll($table){
     return $stmt->fetchAll();
 }
 
+
+function getReservedChambres(){
+    global $pdo;
+
+    $stmt = $pdo->prepare("SELECT * FROM chambre WHERE reserved = 1");
+    $stmt->execute();
+
+    return $stmt->fetchAll();
+}
+
+
+
 function getOne($table, $column, $id){
     global $pdo;
 
